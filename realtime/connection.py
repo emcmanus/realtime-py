@@ -33,7 +33,6 @@ class Socket:
     def __init__(
         self,
         url: str,
-        token: str,
         auto_reconnect: bool = False,
         params: Dict[str, Any] = {},
         hb_interval: int = 5,
@@ -46,7 +45,7 @@ class Socket:
         :param params: Optional parameters for connection.
         :param hb_interval: WS connection is kept alive by sending a heartbeat message. Optional, defaults to 5.
         """
-        self.url = f"{re.sub(r'https?://', 'wss://', url, flags=re.IGNORECASE)}/realtime/v1/websocket?apikey={token}"
+        self.url = url
         self.http_endpoint = http_endpoint_url(url)
         self.channels = defaultdict(list)
         self.is_connected = False
